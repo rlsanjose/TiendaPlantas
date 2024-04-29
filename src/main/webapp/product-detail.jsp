@@ -18,6 +18,7 @@
     Product product = Database.jdbi.withExtension(ProductDao.class, dao -> dao.getProductById(product_id));
     if (product == null) { %>
 <div class="container">
+    <h2 class="alert alert-danger">Página no disponible</h2>
 </div>
 <% } else { %>
 <main>

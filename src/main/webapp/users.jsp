@@ -8,6 +8,7 @@
 <%@ page import="com.svalero.tiendaplantas.dao.ShopDao" %>
 <%@ page import="com.svalero.tiendaplantas.domain.User" %>
 <%@ page import="com.svalero.tiendaplantas.dao.UserDao" %>
+<%@ page import="javax.xml.crypto.Data" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="includes/header.jsp"%>
@@ -21,6 +22,14 @@
                 <p>
                     <a href="#" class="btn btn-primary my-2">Nuevo usuario</a>
                 </p>
+                <form class="d-flex flex-wrap justify-content-center" role="search">
+                    <div>
+                        <input type="text" class="form-control form-control-dark text-bg-dark" placeholder="Busca un usuario" aria-label="Search" name="search">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light me-2">Buscar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -41,24 +50,35 @@
                     }
 
                     List<User> userList = new ArrayList<>();
-                    userList = Database.jdbi.withExtension(UserDao.class, dao -> dao.getAllUsers());
+                    if (request.getParameter("search") == null) {
+                        userList = Database.jdbi.withExtension(UserDao.class, dao -> dao.getAllUsers());
+                    } else {
+                        String searchTermn = request.getParameter("search");
+                        userList = Database.jdbi.withExtension(UserDao.class, dao -> dao.searchUsers(searchTermn));
+                    }
 
+                    if (userList.isEmpty()) {
+                %>
+                <div class="alert alert-danger" role="alert">
+                    <h4>Ningún usuario encontrado.</h4>
+                </div>
+                <%
+                } else {
                     for (User user : userList) {
-
                 %>
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="https://static.vecteezy.com/system/resources/previews/000/574/512/large_2x/vector-sign-of-user-icon.jpg" class="bd-placeholder-img card-img-top"/>
                         <div class="card-body">
                             <% if (user.getLast_name() == null || user.getLast_name().isEmpty() ) {
-                                %>
+                            %>
                             <h4 class="card-text"><strong><%=user.getName()%></strong></h4>
-                                <%
+                            <%
                             } else {
-                                %>
+                            %>
                             <h4 class="card-text"><strong><%=user.getName() + " " + user.getLast_name()%></strong></h4>
-                                <%
-                            }
+                            <%
+                                }
                             %>
                             <p class="card-text"><%=user.getEmail()%></p>
                             <div class="d-flex justify-content-between align-items-center">
@@ -80,6 +100,7 @@
                 </div>
 
                 <%
+                        }
                     }
                 %>
             </div>

@@ -1,5 +1,6 @@
 package com.svalero.tiendaplantas.dao;
 
+import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.UseRowMapper;
 import com.svalero.tiendaplantas.domain.Product;
@@ -15,4 +16,8 @@ public interface ProductDao {
     @SqlQuery("SELECT * FROM products WHERE product_id = ?")
     @UseRowMapper(ProductMapper.class)
     Product getProductById(int productId);
+
+    @SqlQuery("SELECT * FROM products WHERE LOCATE(:searchTerm, name) OR LOCATE(:searchTerm, description);")
+    @UseRowMapper(ProductMapper.class)
+    List<Product> searchProducts(@Bind("searchTerm") String term);
 }

@@ -10,6 +10,16 @@
 
 <%@ include file="includes/header.jsp" %>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) window.scrollTo(0, scrollPosition);
+    });
+
+    window.onbeforeunload = function(e) {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    };
+</script>
 <main>
 
     <section class="py-5 text-center container">
@@ -20,6 +30,14 @@
                 <p>
                     <a href="#" class="btn btn-primary my-2">Nueva planta</a>
                 </p>
+                <form class="d-flex flex-wrap justify-content-center" role="search">
+                    <div>
+                        <input type="text" class="form-control form-control-dark text-bg-dark" placeholder="Busca una planta..." aria-label="Search" name="search-plant">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light me-2">Buscar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -38,12 +56,17 @@
                 </div>
                 <%
                     }
-
                     List<Product> productList = new ArrayList<>();
-                    productList = Database.jdbi.withExtension(ProductDao.class, dao -> dao.getAllProducts());
 
-                    for (Product product : productList) {
+                    if (request.getParameter("search-plant") == null) {
+                        productList = Database.jdbi.withExtension(ProductDao.class, dao -> dao.getAllProducts());
+                    } else {
+                        String search_term = request.getParameter("search-plant");
+                        productList = Database.jdbi.withExtension(ProductDao.class, dao -> dao.searchProducts(search_term));
+                    }
 
+                    if (productList.size() > 0) {
+                        for (Product product : productList) {
                 %>
                 <div class="col">
                     <div class="card shadow-sm">
@@ -63,7 +86,12 @@
                 </div>
 
                 <%
-                    }
+                        }
+                    } else { %>
+                <div class="alert alert-danger">
+                    <h3>No se han encontrado productos</h3>
+                </div>
+                        <% }
                 %>
             </div>
         </div>
@@ -77,6 +105,14 @@
                 <p>
                     <a href="#" class="btn btn-primary my-2">Registrar nueva tienda</a>
                 </p>
+                <form class="d-flex flex-wrap justify-content-center" role="search">
+                    <div>
+                        <input type="text" class="form-control form-control-dark text-bg-dark" placeholder="Busca una tienda..." aria-label="Search" name="search-shop">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light me-2">Buscar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -98,10 +134,23 @@
                     }
 
                     List<Shop> shopList = new ArrayList<>();
-                    shopList = Database.jdbi.withExtension(ShopDao.class, dao -> dao.getAllShops());
 
-                    for (Shop shop : shopList) {
+                    if (request.getParameter("search-shop") == null) {
+                        shopList = Database.jdbi.withExtension(ShopDao.class, dao -> dao.getAllShops());
+                    } else {
+                        String searchTermShop = request.getParameter("search-shop");
+                        shopList = Database.jdbi.withExtension(ShopDao.class, dao -> dao.searchShop(searchTermShop));
+                    }
+
+                    if (shopList.isEmpty()) {
                 %>
+                <div class= "alert alert-danger" role="alert">
+                    <p>No se han encontrado tiendas.</p>
+                </div>
+
+                    <% } else {
+                        for (Shop shop : shopList) {
+                    %>
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="https://cdn1.iconfinder.com/data/icons/nuuline-shops-venues/128/shop_store_retail_commerce-02-512.png" class="bd-placeholder-img card-img-top"/>
@@ -120,6 +169,7 @@
                 </div>
 
                 <%
+                        }
                     }
                 %>
             </div>

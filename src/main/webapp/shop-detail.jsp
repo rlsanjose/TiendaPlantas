@@ -19,6 +19,7 @@
     Shop shop = Database.jdbi.withExtension(ShopDao.class, dao -> dao.getShopById(shop_id));
     if (shop == null) { %>
 <div class="container">
+    <h2 class="alert alert-danger">Página no disponible</h2>
 </div>
 <% } else { %>
 <main>
