@@ -110,7 +110,7 @@
                             <p class="card-text"><%=shop.getDirection()%></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                    <a href="shop-detail.jsp?id=<%=shop.getShop_id()%>" type="button" class="btn btn-sm btn-outline-secondary">Ver</a>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Eliminar</button>
                                 </div>

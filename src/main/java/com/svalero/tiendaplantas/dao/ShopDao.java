@@ -11,4 +11,8 @@ public interface ShopDao {
     @SqlQuery("SELECT * FROM shops")
     @UseRowMapper(ShopMapper.class)
     public List<Shop> getAllShops();
+
+    @SqlQuery("SELECT * FROM shops WHERE shop_id = ?")
+    @UseRowMapper(ShopMapper.class)
+    public Shop getShopById(int id);
 }
