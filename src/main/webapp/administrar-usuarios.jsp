@@ -63,8 +63,9 @@
                             <p class="card-text"><%=user.getEmail()%></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <a href="user-detail.jsp?id=<%=user.getUser_id()%>" type="button" class="btn btn-sm btn-outline-secondary">Ver</a>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                    <a href="" type="button" class="btn btn-sm btn-outline-secondary">Eliminar</a>
                                 </div>
                                 <%
                                     if(user.getIs_admin()==1) {

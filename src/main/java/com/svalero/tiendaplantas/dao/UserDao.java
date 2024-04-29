@@ -11,4 +11,7 @@ public interface UserDao {
     @UseRowMapper(UserMapper.class)
     public List<User> getAllUsers();
 
+    @SqlQuery("SELECT * FROM users WHERE user_id = ?")
+    @UseRowMapper(UserMapper.class)
+    public User getUserById(int id);
 }
