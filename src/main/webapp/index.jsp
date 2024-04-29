@@ -20,6 +20,14 @@
                 <p>
                     <a href="#" class="btn btn-primary my-2">Nueva planta</a>
                 </p>
+                <form class="d-flex flex-wrap justify-content-center" role="search">
+                    <div>
+                        <input type="text" class="form-control form-control-dark text-bg-dark" placeholder="Busca una planta..." aria-label="Search" name="search-plant">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light me-2">Buscar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -38,12 +46,17 @@
                 </div>
                 <%
                     }
-
                     List<Product> productList = new ArrayList<>();
-                    productList = Database.jdbi.withExtension(ProductDao.class, dao -> dao.getAllProducts());
 
-                    for (Product product : productList) {
+                    if (request.getParameter("search-plant") == null) {
+                        productList = Database.jdbi.withExtension(ProductDao.class, dao -> dao.getAllProducts());
+                    } else {
+                        String search_term = request.getParameter("search-plant");
+                        productList = Database.jdbi.withExtension(ProductDao.class, dao -> dao.searchProducts(search_term));
+                    }
 
+                    if (productList.size() > 0) {
+                        for (Product product : productList) {
                 %>
                 <div class="col">
                     <div class="card shadow-sm">
@@ -63,7 +76,12 @@
                 </div>
 
                 <%
-                    }
+                        }
+                    } else { %>
+                        <div class="alert alert-danger">
+                            <h3>No se han encontrado productos</h3>
+                        </div>
+                        <% }
                 %>
             </div>
         </div>
@@ -77,6 +95,14 @@
                 <p>
                     <a href="#" class="btn btn-primary my-2">Registrar nueva tienda</a>
                 </p>
+                <form class="d-flex flex-wrap justify-content-center" role="search">
+                    <div>
+                        <input type="text" class="form-control form-control-dark text-bg-dark" placeholder="Busca una tienda..." aria-label="Search" name="search-shop">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light me-2">Buscar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

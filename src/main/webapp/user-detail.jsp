@@ -19,6 +19,7 @@
     User user = Database.jdbi.withExtension(UserDao.class, dao -> dao.getUserById(user_id));
     if (user == null) { %>
 <div class="container">
+    <h2 class="alert alert-danger">Página no disponible</h2>
 </div>
 <% } else { %>
 <main>

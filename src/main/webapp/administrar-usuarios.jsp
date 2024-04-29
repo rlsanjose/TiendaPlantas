@@ -21,6 +21,14 @@
                 <p>
                     <a href="#" class="btn btn-primary my-2">Nuevo usuario</a>
                 </p>
+                <form class="d-flex flex-wrap justify-content-center" role="search">
+                    <div>
+                        <input type="text" class="form-control form-control-dark text-bg-dark" placeholder="Busca un usuario" aria-label="Search" name="search">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light me-2">Buscar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
