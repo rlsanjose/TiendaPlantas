@@ -12,4 +12,7 @@ public interface ProductDao {
     @UseRowMapper(ProductMapper.class)
     List<Product> getAllProducts();
 
+    @SqlQuery("SELECT * FROM products WHERE product_id = ?")
+    @UseRowMapper(ProductMapper.class)
+    Product getProductById(int productId);
 }

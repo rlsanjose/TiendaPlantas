@@ -49,11 +49,12 @@
                     <div class="card shadow-sm">
                         <img src="<%=product.getImage_link()%>" class="bd-placeholder-img card-img-top" width="100%" height="225"/>
                         <div class="card-body">
-                            <h4 class="card-text"><%=product.getName()%></h4>
+                            <h4 class="card-text"><i><%=product.getName()%></i></h4>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <a href="product-detail.jsp?id=<%=product.getProduct_id()%>" class="btn btn-sm btn-outline-secondary">Ver</a>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Eliminar</button>
                                 </div>
                                 <small class="text-body-secondary"><%=product.getUnit_price()%> euros</small>
                             </div>
@@ -103,14 +104,15 @@
                 %>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="https://cdn1.iconfinder.com/data/icons/nuuline-shops-venues/128/shop_store_retail_commerce-02-512.png" class="bd-placeholder-img card-img-top" width="100%" height="225"/>
+                        <img src="https://cdn1.iconfinder.com/data/icons/nuuline-shops-venues/128/shop_store_retail_commerce-02-512.png" class="bd-placeholder-img card-img-top"/>
                         <div class="card-body">
                             <p class="card-text"><strong><%=shop.getCity()%></strong></p>
                             <p class="card-text"><%=shop.getDirection()%></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Eliminar</button>
                                 </div>
                             </div>
                         </div>
