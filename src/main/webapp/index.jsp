@@ -10,6 +10,16 @@
 
 <%@ include file="includes/header.jsp" %>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) window.scrollTo(0, scrollPosition);
+    });
+
+    window.onbeforeunload = function(e) {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    };
+</script>
 <main>
 
     <section class="py-5 text-center container">
@@ -78,9 +88,9 @@
                 <%
                         }
                     } else { %>
-                        <div class="alert alert-danger">
-                            <h3>No se han encontrado productos</h3>
-                        </div>
+                <div class="alert alert-danger">
+                    <h3>No se han encontrado productos</h3>
+                </div>
                         <% }
                 %>
             </div>
@@ -124,10 +134,23 @@
                     }
 
                     List<Shop> shopList = new ArrayList<>();
-                    shopList = Database.jdbi.withExtension(ShopDao.class, dao -> dao.getAllShops());
 
-                    for (Shop shop : shopList) {
+                    if (request.getParameter("search-shop") == null) {
+                        shopList = Database.jdbi.withExtension(ShopDao.class, dao -> dao.getAllShops());
+                    } else {
+                        String searchTermShop = request.getParameter("search-shop");
+                        shopList = Database.jdbi.withExtension(ShopDao.class, dao -> dao.searchShop(searchTermShop));
+                    }
+
+                    if (shopList.isEmpty()) {
                 %>
+                <div class= "alert alert-danger" role="alert">
+                    <p>No se han encontrado tiendas.</p>
+                </div>
+
+                    <% } else {
+                        for (Shop shop : shopList) {
+                    %>
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="https://cdn1.iconfinder.com/data/icons/nuuline-shops-venues/128/shop_store_retail_commerce-02-512.png" class="bd-placeholder-img card-img-top"/>
@@ -146,6 +169,7 @@
                 </div>
 
                 <%
+                        }
                     }
                 %>
             </div>
