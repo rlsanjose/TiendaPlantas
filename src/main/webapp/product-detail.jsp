@@ -41,12 +41,12 @@
                             <% if (product.getStock_number() > 1) { %>
                             <li>Hay <%=product.getStock_number()%> unidades disponibles</li>
                             <% } else if (product.getStock_number() == 1) { %>
-                            <li>¡Sólo queda una unidad disponible!</li>
+                            <li>¡Solo queda una unidad disponible!</li>
                             <% } else { %>
                             <li>Sin stock</li>
                             <%} %>
                         </ul>
-                        <a href="#" type="button" class="btn btn-lg btn-outline-primary alert alert-success">Editar producto</a>
+                        <a href="form-product.jsp?id=<%=product.getProduct_id()%>" type="button" class="btn btn-lg btn-outline-primary alert alert-success">Editar producto</a>
                         <a href="remove-product?id=<%=product.getProduct_id()%>" type="button" class="btn btn-lg btn-outline-primary alert alert-danger">Eliminar producto</a>
                     </div>
                 </div>

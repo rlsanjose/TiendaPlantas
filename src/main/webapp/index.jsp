@@ -76,7 +76,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="product-detail.jsp?id=<%=product.getProduct_id()%>" class="btn btn-sm btn-outline-secondary">Ver</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                    <a href="form-product.jsp?id=<%=product.getProduct_id()%>" class="btn btn-sm btn-outline-secondary">Editar</a>
                                     <a href="remove-product?id=<%=product.getProduct_id()%>" class="btn btn-sm btn-outline-secondary">Eliminar</a>
                                 </div>
                                 <small class="text-body-secondary"><%=product.getUnit_price()%> euros</small>

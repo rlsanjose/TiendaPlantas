@@ -3,6 +3,7 @@ package com.svalero.tiendaplantas.servlet;
 import com.svalero.tiendaplantas.dao.Database;
 import com.svalero.tiendaplantas.dao.ProductDao;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/add-product")
-public class AddProduct extends HttpServlet {
+@WebServlet("/edit-product")
+public class EditProduct extends HttpServlet {
 
-    @Override
-     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         float unit_price = Float.parseFloat(request.getParameter("unit_price"));
@@ -25,17 +26,19 @@ public class AddProduct extends HttpServlet {
         String image_link = request.getParameter("image_link");
         String type = request.getParameter("type");
 
+        if (id == 0) {
+            response.sendRedirect("form-product.jsp?registered=false");
+        }
         try {
             Database.connect();
             int affectedRows = Database.jdbi.withExtension(ProductDao.class,
-                    dao -> dao.addProduct(name, description, unit_price, stock_number, image_link, type));
+                    dao -> dao.EditProduct(name, description, unit_price, stock_number, image_link, type, id));
             if (affectedRows == 1) {
-                response.sendRedirect("form-product.jsp?registered=true");
+                response.sendRedirect("form-product.jsp?id=" + id + "&registered=true");
             } else if (affectedRows == 0) {
-                response.sendRedirect("form-product.jsp?registered=false");
+                response.sendRedirect("form-product.jsp?id=" + id + "&registered=false");
             }
-
-        } catch (Exception e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             response.sendRedirect("form-product.jsp?registered=false");
         }

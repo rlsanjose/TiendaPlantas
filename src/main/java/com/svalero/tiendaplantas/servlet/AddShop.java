@@ -16,6 +16,8 @@ import java.io.IOException;
 public class AddShop extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
         String city = request.getParameter("city");
         String direction = request.getParameter("direction");
         String opening_time = request.getParameter("opening_time");
@@ -31,9 +33,7 @@ public class AddShop extends HttpServlet {
             } else {
                 response.sendRedirect("form-shop.jsp?registered=false");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
