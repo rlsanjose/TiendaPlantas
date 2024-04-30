@@ -39,7 +39,6 @@ public class EditUser extends HttpServlet {
             }
 
             allUsers = Database.jdbi.withExtension(UserDao.class, dao -> dao.getAllUsers());
-            boolean repeatedEmail = false;
 
             for (User everyUser : allUsers) {
                 if (everyUser.getUser_id() == user_id) {
@@ -47,7 +46,6 @@ public class EditUser extends HttpServlet {
                 }
 
                 if (everyUser.getEmail().equals(email)) {
-                    repeatedEmail = true;
                     response.sendRedirect("form-user.jsp?id=" + user_id + "&registered=repeatedEmail");
                     return;
                 }

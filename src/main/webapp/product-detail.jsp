@@ -2,6 +2,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="com.svalero.tiendaplantas.domain.Product" %>
 <%@ page import="com.svalero.tiendaplantas.dao.ProductDao" %>
+<%@ page import="static com.svalero.tiendaplantas.util.CurrencyUtil.format" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="includes/header.jsp"%>
 
@@ -34,7 +35,7 @@
                         <h3 class="my-0 fw-normal"><i><%=product.getName()%></i></h3>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title pricing-card-title"><%=product.getUnit_price()%> €</h4>
+                        <h4 class="card-title pricing-card-title"><%=format(product.getUnit_price())%></h4>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li class="mb-1 text-body-secondary">Tipo: <%=product.getType()%></li>
                             <li><%=product.getDescription()%></li>

@@ -93,12 +93,12 @@ if (request.getParameter("id") != null) {
 
                 <div class="col-sm-6">
                     <label for="unit_price" class="form-label">Precio</label>
-                    <input type="number" step="0.01" class="form-control" id="unit_price" name="unit_price" placeholder="" value="<%=productPrice%>" required>
+                    <input type="number" min="0.01" step="0.01" class="form-control" id="unit_price" name="unit_price" placeholder="" value="<%=productPrice%>" required>
                 </div>
 
                 <div class="col-sm-6">
                     <label for="stock_number" class="form-label">Número en stock</label>
-                    <input type="number" class="form-control" id="stock_number" name="stock_number" placeholder="" value="<%=productStock%>" required>
+                    <input type="number" min="0" class="form-control" id="stock_number" name="stock_number" placeholder="" value="<%=productStock%>" required>
                 </div>
 
                 <div class="col-12">
