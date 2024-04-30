@@ -28,7 +28,7 @@
                 <h1 class="fw-light">Nuestras plantas</h1>
                 <br>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Nueva planta</a>
+                    <a href="form-product.jsp" class="btn btn-primary my-2">Nueva planta</a>
                 </p>
                 <form class="d-flex flex-wrap justify-content-center" role="search">
                     <div>
@@ -103,7 +103,7 @@
                 <h1 class="fw-light">Dónde puedes encontrarnos</h1>
                 <p class="lead text-body-secondary">Visítanos para que podamos darte nuestro mejor servicio.</p>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Registrar nueva tienda</a>
+                    <a href="form-shop.jsp" class="btn btn-primary my-2">Registrar nueva tienda</a>
                 </p>
                 <form class="d-flex flex-wrap justify-content-center" role="search">
                     <div>
