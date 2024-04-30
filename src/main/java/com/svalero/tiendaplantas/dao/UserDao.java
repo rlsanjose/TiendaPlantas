@@ -27,9 +27,18 @@ public interface UserDao {
     @UseRowMapper(UserMapper.class)
     List<User> getUserByEmail(String email);
 
+    @SqlQuery("SELECT * FROM users WHERE user_id = ? AND pass = SHA1(?)")
+    @UseRowMapper(UserMapper.class)
+    List<User> getUserByIdAndPassword(int id, String password);
+
     @SqlUpdate("DELETE FROM users WHERE user_id = ?")
     void removeUser(int id);
 
     @SqlUpdate("INSERT INTO users (name, last_name, email, pass, is_admin) VALUES (?, ?, ?, SHA1(?), ?)")
-    Integer addUser(String name, String lastName, String email, String password, int isAdmin) throws SQLIntegrityConstraintViolationException;
+    int addUser(String name, String lastName, String email, String password, int isAdmin) throws SQLIntegrityConstraintViolationException;
+
+    @SqlUpdate("UPDATE users " +
+            "SET name = ?, last_name = ?, email = ?, pass = SHA1(?), is_admin = ? " +
+            "WHERE user_id = ?")
+    int editUser(String name, String last_name, String email, String pass, int is_admin, int userId);
 }

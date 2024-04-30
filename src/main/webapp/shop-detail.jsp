@@ -35,7 +35,7 @@
                 <p><%=shop.getDirection()%></p>
                 <h4>Horario</h4>
                 <p><%=shop.getOpening_time()%></p>
-                <a href="#" type="button" class="btn btn-lg btn-outline-primary alert alert-success">Editar tienda</a>
+                <a href="form-shop.jsp?id=<%=shop.getShop_id()%>" type="button" class="btn btn-lg btn-outline-primary alert alert-success">Editar tienda</a>
                 <a href="remove-shop?id=<%=shop.getShop_id()%>" type="button" class="btn btn-lg btn-outline-primary alert alert-danger">Eliminar tienda</a>
             </div>
 

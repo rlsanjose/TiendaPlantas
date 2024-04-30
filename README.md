@@ -4,11 +4,11 @@ Proyecto para la asignatura de Programación de 1º de DAW.
 
 ## Requisitos cumplidos:
 
-- [ ] Dar de alta
-- [ ] Listado y vista detalle
-- [ ] Búsqueda
-- [ ] Modificar y dar de baja
-- [ ] Patrón DAO
+- [x] Dar de alta
+- [x] Listado y vista detalle
+- [x] Búsqueda
+- [x] Modificar y dar de baja
+- [x] Patrón DAO
 
 ## Requisitos opcionales
 
