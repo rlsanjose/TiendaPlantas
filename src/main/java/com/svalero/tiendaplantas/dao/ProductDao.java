@@ -24,4 +24,7 @@ public interface ProductDao {
 
     @SqlUpdate("DELETE FROM products WHERE product_id = ?")
     void removeProduct(int productId);
+
+    @SqlUpdate("INSERT INTO products(name, description, unit_price, stock_number, image_link, type) VALUES (?, ?, ?, ?, ?, ?)")
+    int addProduct(String name, String description, float unit_price, int stock_number, String image_link, String type);
 }

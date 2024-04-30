@@ -17,7 +17,7 @@ public class AddUser extends HttpServlet {
     // Gestionar request
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String name = request.getParameter("name");
         String last_name = request.getParameter("last_name");
