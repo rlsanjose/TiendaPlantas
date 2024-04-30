@@ -7,6 +7,7 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import org.jdbi.v3.sqlobject.statement.UseRowMapper;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public interface UserDao {
@@ -22,6 +23,13 @@ public interface UserDao {
     @UseRowMapper(UserMapper.class)
     List<User> searchUsers(@Bind("searchTerm") String term);
 
+    @SqlQuery("SELECT * FROM users WHERE email = ?")
+    @UseRowMapper(UserMapper.class)
+    List<User> getUserByEmail(String email);
+
     @SqlUpdate("DELETE FROM users WHERE user_id = ?")
     void removeUser(int id);
+
+    @SqlUpdate("INSERT INTO users (name, last_name, email, pass, is_admin) VALUES (?, ?, ?, SHA1(?), ?)")
+    Integer addUser(String name, String lastName, String email, String password, int isAdmin) throws SQLIntegrityConstraintViolationException;
 }

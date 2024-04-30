@@ -20,7 +20,7 @@
                 <h1 class="fw-light">Administrar usuarios</h1>
                 <br>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Nuevo usuario</a>
+                    <a href="form-user.jsp" class="btn btn-primary my-2">Nuevo usuario</a>
                 </p>
                 <form class="d-flex flex-wrap justify-content-center" role="search">
                     <div>
