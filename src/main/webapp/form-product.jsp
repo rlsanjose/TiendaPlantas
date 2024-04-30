@@ -98,7 +98,7 @@ if (request.getParameter("id") != null) {
 
                 <div class="col-sm-6">
                     <label for="stock_number" class="form-label">Número en stock</label>
-                    <input type="number" class="form-control" id="stock_number" name="stock_number" placeholder="" value="<%=productStock%>" >
+                    <input type="number" class="form-control" id="stock_number" name="stock_number" placeholder="" value="<%=productStock%>" required>
                 </div>
 
                 <div class="col-12">

@@ -15,19 +15,21 @@
     String formAction = "add-shop";
 
     if (request.getParameter("registered") != null) {
+%>
+<div class="container"><br><br>
+<%
         if (request.getParameter("registered").equals("true")) {
 %>
-<div class="container"><br><br>
     <h5 class="alert alert-success">Tienda registrada.</h5>
-</div>
 <%
-} else if (request.getParameter("registered").equals("false")) {
+        } else if (request.getParameter("registered").equals("false")) {
 %>
-<div class="container"><br><br>
     <h5 class="alert alert-danger">Fallo en el registro.</h5>
-</div>
 <%
         }
+%>
+</div>
+<%
     }
     if (request.getParameter("id") != null) {
         id = Integer.parseInt(request.getParameter("id"));

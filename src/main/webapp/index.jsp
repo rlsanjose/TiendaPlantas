@@ -159,7 +159,7 @@
                             <p class="card-text"><%=shop.getDirection()%></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="shop-detail.jsp?id=<%=shop.getShop_id()%>" type="button" class="btn btn-sm btn-outline-secondary">Ver</a>
+                                    <a href="shop-detail.jsp?id=<%=shop.getShop_id()%>" class="btn btn-sm btn-outline-secondary">Ver</a>
                                     <a href="form-shop.jsp?id=<%=shop.getShop_id()%>" class="btn btn-sm btn-outline-secondary">Editar</a>
                                     <a href="remove-shop?id=<%= shop.getShop_id()%>" class="btn btn-sm btn-outline-secondary">Eliminar</a>
                                 </div>

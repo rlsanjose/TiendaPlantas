@@ -43,8 +43,8 @@
                 <% } else { %>
                     <p>Con privilegios de administrador</p>
                 <% }%>
-                <a href="form-user.jsp?id=<%=user.getUser_id()%>" type="button" class="btn btn-lg btn-outline-primary alert alert-success">Editar usuario</a>
-                <a href="remove-user?id=<%=user.getUser_id()%>" type="button" class="btn btn-lg btn-outline-primary alert alert-danger">Eliminar usuario</a>
+                <a href="form-user.jsp?id=<%=user.getUser_id()%>" class="btn btn-lg btn-outline-primary alert alert-success">Editar usuario</a>
+                <a href="remove-user?id=<%=user.getUser_id()%>" class="btn btn-lg btn-outline-primary alert alert-danger">Eliminar usuario</a>
             </div>
         </div>
     </div>

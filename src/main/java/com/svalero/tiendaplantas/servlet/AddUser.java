@@ -39,17 +39,13 @@ public class AddUser extends HttpServlet {
 
                 response.sendRedirect("form-user.jsp?registered=true");
             } else {
-                response.sendRedirect("form-user.jsp?registered=false");
+                response.sendRedirect("form-user.jsp?registered=repeatedEmail");
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            response.sendRedirect("form-user.jsp");
-        } catch (SQLException e) {
+            response.sendRedirect("form-user.jsp?registered=error");
+        } catch (SQLException |ClassNotFoundException | IOException e) {
             e.printStackTrace();
-            response.sendRedirect("form-user.jsp");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            response.sendRedirect("form-user.jsp?registered=error");
         }
     }
 
