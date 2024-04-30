@@ -25,4 +25,7 @@ public interface ShopDao {
 
     @SqlUpdate("DELETE FROM shops WHERE shop_id = ?")
     void removeShop(int id);
+
+    @SqlUpdate("INSERT INTO shops(city, direction, opening_time) VALUES (?, ?, ?)")
+    int addShop(String city, String direction, String opening_time);
 }

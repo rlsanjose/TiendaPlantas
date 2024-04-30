@@ -3,6 +3,7 @@ package com.svalero.tiendaplantas.servlet;
 import com.svalero.tiendaplantas.dao.Database;
 import com.svalero.tiendaplantas.dao.UserDao;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +15,9 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 @WebServlet("/add-user")
 public class AddUser extends HttpServlet {
-    // Gestionar request
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String name = request.getParameter("name");
         String last_name = request.getParameter("last_name");
