@@ -6,6 +6,7 @@
 <%@ page import="com.svalero.tiendaplantas.dao.ProductDao" %>
 <%@ page import="com.svalero.tiendaplantas.domain.Shop" %>
 <%@ page import="com.svalero.tiendaplantas.dao.ShopDao" %>
+<%@ page import="static com.svalero.tiendaplantas.util.CurrencyUtil.format" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="includes/header.jsp" %>
@@ -79,7 +80,7 @@
                                     <a href="form-product.jsp?id=<%=product.getProduct_id()%>" class="btn btn-sm btn-outline-secondary">Editar</a>
                                     <a href="remove-product?id=<%=product.getProduct_id()%>" class="btn btn-sm btn-outline-secondary">Eliminar</a>
                                 </div>
-                                <small class="text-body-secondary"><%=product.getUnit_price()%> euros</small>
+                                <small class="text-body-secondary"><%=format(product.getUnit_price())%></small>
                             </div>
                         </div>
                     </div>
