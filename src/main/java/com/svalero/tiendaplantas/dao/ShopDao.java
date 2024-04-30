@@ -28,4 +28,7 @@ public interface ShopDao {
 
     @SqlUpdate("INSERT INTO shops(city, direction, opening_time) VALUES (?, ?, ?)")
     int addShop(String city, String direction, String opening_time);
+
+    @SqlUpdate("UPDATE shops SET city = ?, direction = ?, opening_time = ? WHERE shop_id = ?")
+    int editShop(String city, String direction, String opening_time, int shop_id);
 }
